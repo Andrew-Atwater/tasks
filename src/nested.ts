@@ -24,8 +24,8 @@ export function getNonEmptyQuestions(questions: Question[]): Question[] {
     let nonEmpty: Question[] = [];
     for (const question of questions) {
         if (
-            question.body != "" &&
-            question.expected != "" &&
+            question.body != "" ||
+            question.expected != "" ||
             question.options.length != 0
         ) {
             nonEmpty.push(question);
