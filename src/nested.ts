@@ -120,7 +120,19 @@ export function addNewQuestion(
     name: string,
     type: QuestionType,
 ): Question[] {
-    return [];
+    const addBlank: Question[] = questions;
+    const blank: Question = {
+        id: id,
+        name: name,
+        type: type,
+        body: "",
+        expected: "",
+        options: [],
+        points: 1,
+        published: false,
+    };
+    addBlank.push(blank);
+    return addBlank;
 }
 
 /***
