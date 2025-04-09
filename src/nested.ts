@@ -42,6 +42,11 @@ export function findQuestion(
     questions: Question[],
     id: number,
 ): Question | null {
+    for (const question of questions) {
+        if (question.id == id) {
+            return question;
+        }
+    }
     return null;
 }
 
