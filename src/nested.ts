@@ -174,5 +174,15 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    return [];
+    const newOpList: Question[] = questions;
+    for (const question of newOpList) {
+        if (question.id == targetId) {
+            if (targetOptionIndex == -1) {
+                question.options.push(newOption);
+            } else {
+                question.options[targetOptionIndex] = newOption;
+            }
+        }
+    }
+    return newOpList;
 }
