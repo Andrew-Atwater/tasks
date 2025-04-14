@@ -37,18 +37,24 @@ export function StartAttempt(): React.JSX.Element {
         flipProgress();
         takeAttempt();
     }
+
+    function handleStop(): void {
+        flipProgress();
+    }
+
     return (
         <div>
             <div>
-                {!inProgress && attempts != 0 && (
-                    <Button onClick={handleStart}>Start Quiz</Button>
-                )}
-            </div>
-            <div>
-                {inProgress && (
-                    <Button onClick={flipProgress}>Stop Quiz</Button>
-                )}
-                {!inProgress && <Button onClick={mulligan}>Mulligan</Button>}
+                Attempts: {attempts}
+                {inProgress ?
+                    <div>
+                        <Button onClick={handleStart}>Start Quiz</Button>
+                    </div>
+                :   <div>
+                        <Button onClick={handleStop}>Stop Quiz</Button>{" "}
+                        <Button onClick={mulligan}>Mulligan</Button>
+                    </div>
+                }
             </div>
         </div>
     );
