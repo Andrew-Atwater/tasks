@@ -21,13 +21,19 @@ export function ChangeType(): React.JSX.Element {
             setQType("multiple_choice_question");
         }
     }
-
+    function convertTypeToText(): string {
+        let text: string = "Short Answer";
+        if (type == "multiple_choice_question") {
+            text = "Multiple Choice";
+        } else {
+            text = "Short Answer";
+        }
+        return text;
+    }
     return (
         <div>
-            <div>
-                <span>{type}</span>;
-                <Button onClick={flipQType}>Change Type</Button>
-            </div>
+            {convertTypeToText()}
+            <Button onClick={flipQType}>Change Type</Button>
         </div>
     );
 }
