@@ -25,7 +25,7 @@ export function ChangeType(): React.JSX.Element {
     return (
         <div>
             <div>
-                <span>type</span>;
+                <span>{type}</span>;
                 <Button onClick={flipQType}>Change Type</Button>
             </div>
         </div>
