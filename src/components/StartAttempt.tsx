@@ -21,40 +21,43 @@ export function StartAttempt(): React.JSX.Element {
     const [attempts, setAttempt] = useState<number>(4);
     const [inProgress, setProgress] = useState<boolean>(false);
 
-    function takeAttempt(): void {
-        setAttempt(attempts - 1);
-    }
+    const startQuiz = () => {
+        if (attempts > 0 && !inProgress) {
+            setProgress(true);
+            setAttempt((prev) => prev - 1);
+        }
+    };
 
-    function mulligan(): void {
-        setAttempt(attempts + 1);
-    }
+    const stopQuiz = () => {
+        if (inProgress) {
+            setProgress(false);
+        }
+    };
 
-    function flipProgress(): void {
-        setProgress(!inProgress);
-    }
-
-    function handleStart(): void {
-        flipProgress();
-        takeAttempt();
-    }
-
-    function handleStop(): void {
-        flipProgress();
-    }
+    const mulligan = () => {
+        if (!inProgress) {
+            setAttempt((prev) => prev + 1);
+        }
+    };
 
     return (
         <div>
             <div>
                 Attempts: {attempts}
-                {inProgress ?
-                    <div>
-                        <Button onClick={handleStart}>Start Quiz</Button>
-                    </div>
-                :   <div>
-                        <Button onClick={handleStop}>Stop Quiz</Button>{" "}
-                        <Button onClick={mulligan}>Mulligan</Button>
-                    </div>
-                }
+                <div>
+                    <Button
+                        onClick={startQuiz}
+                        disabled={inProgress || attempts === 0}
+                    >
+                        Start Quiz
+                    </Button>
+                    <Button onClick={stopQuiz} disabled={!inProgress}>
+                        Stop Quiz
+                    </Button>{" "}
+                    <Button onClick={mulligan} disabled={inProgress}>
+                        Mulligan
+                    </Button>
+                </div>
             </div>
         </div>
     );

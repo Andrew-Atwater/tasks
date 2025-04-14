@@ -51,7 +51,7 @@ describe("StartAttempt Component tests", () => {
     });
     test("There is an initially enabled Mulligan button", () => {
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         expect(mulliganButton).toBeInTheDocument();
         expect(mulliganButton).toBeEnabled();
@@ -60,7 +60,7 @@ describe("StartAttempt Component tests", () => {
         const attemptNumber: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         mulliganButton.click();
         const attemptNumberLater = extractDigits(screen.getByText(/(\d+)/));
@@ -70,7 +70,7 @@ describe("StartAttempt Component tests", () => {
         const attemptNumber: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         mulliganButton.click();
         mulliganButton.click();
@@ -81,7 +81,7 @@ describe("StartAttempt Component tests", () => {
         const attemptNumber: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
         const startButton = screen.getByRole("button", {
-            name: /Start Quiz/i
+            name: /Start Quiz/i,
         });
         startButton.click();
         const attemptNumberLater =
@@ -91,11 +91,11 @@ describe("StartAttempt Component tests", () => {
     test("Clicking Start Quiz changes enabled buttons", () => {
         // Given the buttons...
         const startButton = screen.getByRole("button", {
-            name: /Start Quiz/i
+            name: /Start Quiz/i,
         });
         const stopButton = screen.getByRole("button", { name: /Stop Quiz/i });
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         // When the start button is clicked
         startButton.click();
@@ -107,11 +107,11 @@ describe("StartAttempt Component tests", () => {
     test("Clicking Start and Stop Quiz changes enabled buttons", () => {
         // Given the buttons and initial attempt number...
         const startButton = screen.getByRole("button", {
-            name: /Start Quiz/i
+            name: /Start Quiz/i,
         });
         const stopButton = screen.getByRole("button", { name: /Stop Quiz/i });
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         // When we click the start button and then the stop button
         startButton.click();
@@ -124,11 +124,11 @@ describe("StartAttempt Component tests", () => {
     test("Clicking Start, Stop, Mulligan sets attempts to original", () => {
         // Given the buttons and initial attempt number...
         const startButton = screen.getByRole("button", {
-            name: /Start Quiz/i
+            name: /Start Quiz/i,
         });
         const stopButton = screen.getByRole("button", { name: /Stop Quiz/i });
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         const attemptNumber: number =
             extractDigits(screen.getByText(/(\d+)/)) || 0;
@@ -149,11 +149,11 @@ describe("StartAttempt Component tests", () => {
     test("Cannot click start quiz when out of attempts", () => {
         // Given the buttons and initial attempt number...
         const startButton = screen.getByRole("button", {
-            name: /Start Quiz/i
+            name: /Start Quiz/i,
         });
         const stopButton = screen.getByRole("button", { name: /Stop Quiz/i });
         const mulliganButton = screen.getByRole("button", {
-            name: /Mulligan/i
+            name: /Mulligan/i,
         });
         let attemptNumber = extractDigits(screen.getByText(/(\d+)/)) || 0;
         const initialAttempt = attemptNumber;

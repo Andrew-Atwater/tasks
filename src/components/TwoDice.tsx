@@ -27,43 +27,38 @@ export function d6(): number {
 }
 
 export function TwoDice(): React.JSX.Element {
-    const [numRolledLeft, roll1] = useState<number>(1);
-    const [numRolledRight, roll2] = useState<number>(6);
+    const [leftDie, setLeft] = useState<number>(1);
+    const [rightDie, setRight] = useState<number>(6);
 
     function rollLeft(): void {
-        const result = d6();
-        roll1(result);
+        setLeft(d6());
     }
 
     function rollRight(): void {
-        const result = d6();
-        roll2(result);
+        setRight(d6());
     }
 
-    function compareRolls(): boolean {
-        let win: boolean = false;
-        if (numRolledLeft == 1) {
-            if (numRolledRight == 1) {
-                win = false;
-            } else {
-                win = true;
-            }
-        } else if (numRolledLeft == numRolledRight) {
-            win = true;
-        }
-        return win;
+    let message: string = "";
+
+    if (leftDie == 1 && rightDie == 1) {
+        message = "You Lose!";
+    } else if (leftDie == rightDie) {
+        message = "You Win!";
+    } else {
+        message = "";
     }
 
     return (
         <div>
             <div>
-                <span>Left Die: {numRolledLeft}</span>
-                <span>Right Die: {numRolledRight}</span>
-                <Button onClick={rollLeft}>Roll Left Die</Button>
-                <Button onClick={rollRight}>Roll Right Die</Button>
-                {compareRolls() && <div>You Win!</div>}
-                {!compareRolls() && <div> You Lose!</div>}
+                <span data-testid="left-die">Left Die: {leftDie}</span>{" "}
+                <span data-testid="right-die">Right Die: {rightDie}</span>
             </div>
+            <div>
+                <Button onClick={rollLeft}>Roll Left Die</Button>{" "}
+                <Button onClick={rollRight}>Roll Right Die</Button>
+            </div>
+            <div>{message}</div>
         </div>
     );
 }
